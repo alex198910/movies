@@ -8,35 +8,29 @@
 
 import UIKit
 
-class DataManager: NSObject {
+class DataManager {
     
-    var apiManager = APIManager()
     static let shared = DataManager()
-    
-    private func appMan(completion: @escaping ([Movie]?) -> () ) {
-        apiManager.getData { data in
-            completion(data)
-            
-        }
-        
-    }
-    
+    private var apiManager = APIManager()
+
     func getMovies(completion: @escaping ([Movie]?) -> () ) {
-        appMan { data in
+        getData { data in
             guard let data = data else {
-            // core data
+                // core data
                 completion(CoreDataManager.shared.loadMovies())
                 return
-                
             }
             // json data
-            CoreDataManager.shared.cleanMoviesDataInDataBase()
-            CoreDataManager.shared.add(movies: data)
+            DispatchQueue.global(qos: .background).async{
+                CoreDataManager.shared.add(movies: data)
+            }
             completion(data)
-            
         }
-        return
-        
     }
-
+    
+    private func getData(completion: @escaping ([Movie]?) -> () ) {
+        apiManager.getData { data in
+            completion(data)
+        }
+    }
 }

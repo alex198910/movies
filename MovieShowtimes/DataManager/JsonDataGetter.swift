@@ -8,18 +8,14 @@
 
 import UIKit
 
-class JsonDataGetter: NSObject {
-    func decodeJson(myData: Data, comletion: @escaping (([Movie]?) -> Void)) {
+class JsonDataGetter {
+    func decodeJson(data: Data, completion: @escaping (([Movie]?) -> Void)) {
         do {
-            let jsonData = try JSONDecoder().decode([Movie].self, from: myData)
-            comletion(jsonData)
-            
+            let jsonData = try JSONDecoder().decode([Movie].self, from: data)
+            completion(jsonData)
         } catch {
             //print("Error during parsing ---> \(error) ")
-            comletion(nil)
-            
+            completion(nil)
         }
-        
     }
-        
 }

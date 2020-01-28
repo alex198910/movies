@@ -22,6 +22,7 @@
                             <constraint firstAttribute="width" constant="150" id="I32-Pz-7qZ"/>
                             <constraint firstAttribute="height" constant="200" id="bIJ-SS-DTe"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="wU3-gq-DVe"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwb-O1-iGf">
                         <rect key="frame" x="159" y="16" width="242" height="26.5"/>
@@ -30,13 +31,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R8L-h9-vPi">
-                        <rect key="frame" x="165" y="44.5" width="230" height="100"/>
+                        <rect key="frame" x="165" y="57.5" width="230" height="21"/>
                         <accessibility key="accessibilityConfiguration">
                             <accessibilityTraits key="traits" staticText="YES" searchField="YES"/>
                         </accessibility>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="100" id="HED-TM-glb"/>
-                        </constraints>
                         <attributedString key="attributedText">
                             <fragment content="Label">
                                 <attributes>
@@ -52,12 +50,13 @@
                 <constraints>
                     <constraint firstItem="vwb-O1-iGf" firstAttribute="leading" secondItem="pH3-qy-zxc" secondAttribute="trailing" constant="9" id="7Bj-ke-cxl"/>
                     <constraint firstItem="pH3-qy-zxc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Brq-OW-l3Q"/>
-                    <constraint firstItem="R8L-h9-vPi" firstAttribute="leading" secondItem="pH3-qy-zxc" secondAttribute="trailing" constant="15" id="GJY-EZ-z2a"/>
+                    <constraint firstItem="R8L-h9-vPi" firstAttribute="top" secondItem="vwb-O1-iGf" secondAttribute="bottom" constant="15" id="D60-cM-4vf"/>
+                    <constraint firstAttribute="bottom" secondItem="pH3-qy-zxc" secondAttribute="bottom" id="K3G-zB-wkO"/>
                     <constraint firstAttribute="trailing" secondItem="R8L-h9-vPi" secondAttribute="trailing" constant="15" id="KVV-Jl-33b"/>
                     <constraint firstAttribute="trailing" secondItem="vwb-O1-iGf" secondAttribute="trailing" constant="9" id="XVB-iL-aJF"/>
                     <constraint firstItem="pH3-qy-zxc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="kVl-Gt-Tm9"/>
-                    <constraint firstItem="R8L-h9-vPi" firstAttribute="firstBaseline" secondItem="vwb-O1-iGf" secondAttribute="baseline" constant="24" symbolType="layoutAnchor" id="tTl-V3-7Uk"/>
                     <constraint firstItem="vwb-O1-iGf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="xvU-Vw-Rax"/>
+                    <constraint firstItem="R8L-h9-vPi" firstAttribute="centerX" secondItem="vwb-O1-iGf" secondAttribute="centerX" id="zuZ-BV-Ra9"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

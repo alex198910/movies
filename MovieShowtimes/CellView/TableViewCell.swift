@@ -8,17 +8,10 @@
 
 import UIKit
 
-    
-
 class TableViewCell: UITableViewCell {
-
-
-    var i = 0
     
     @IBOutlet weak var mainImageView: UIImageView!
-    
     @IBOutlet weak var mainLabel: UILabel!
-    
     @IBOutlet weak var secondLabel: UILabel!
         
     override func awakeFromNib() {

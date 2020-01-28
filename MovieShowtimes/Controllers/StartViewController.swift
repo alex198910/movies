@@ -9,67 +9,54 @@
 import UIKit
 
 class StartViewController: UIViewController {
-    
 
-    @IBOutlet weak var startUIButton: UIButton!
+    @IBOutlet weak var startButton: UIButton!
 
-    var arrayOfMovies = [Movie]()
-    var apiManager = APIManager()
-    var DataMan = DataManager.shared
+    var movies = [Movie]()
+    var dataManager = DataManager.shared
     
-    @IBOutlet weak var spinnerUIActivityIndicatorView: UIActivityIndicatorView!
-    @IBAction func ActStart(_ sender: Any) {
-        self.startUIButton.isHidden = true
-        spinnerUIActivityIndicatorView.startAnimating()
+    @IBOutlet weak var spinnerView: UIActivityIndicatorView!
     
-        DataMan.getMovies { [weak self] data in
+    @IBAction func startButtonPressed(_ sender: Any) {
+        startButton.isHidden = true
+        spinnerView.startAnimating()
+    
+        dataManager.getMovies { [weak self] data in
             guard let strongSelf = self, let data = data, data.count > 0 else {
-                self?.startUIButton.isHidden = true
-                let alertUIAlertController = UIAlertController(title: "Ошибка", message: "Ошибка загрузки файлов из сети", preferredStyle: .alert)
+                let alertUIAlertController = UIAlertController(title: "Ошибка", message: "Ошибка загрузки файлов", preferredStyle: .alert)
                 let closeButtonUIAlertAction = UIAlertAction(title: "Закрыть", style: .default, handler: { action in})
                 alertUIAlertController.addAction(closeButtonUIAlertAction)
+
                 DispatchQueue.main.async(execute: {
-                    self?.spinnerUIActivityIndicatorView.stopAnimating()
+                    self?.spinnerView.stopAnimating()
                     self?.present(alertUIAlertController, animated: true)
-                    self?.startUIButton.isHidden = false
-                    
+                    self?.startButton.isHidden = false
                 })
                 return
-                
             }
-            strongSelf.arrayOfMovies = data
+            strongSelf.movies = data
             DispatchQueue.main.async {
-                let mainTVC = strongSelf.storyboard?.instantiateViewController(identifier: "cellsVC") as! ViewControllerWithCells
-                mainTVC.arrayOfMovies = strongSelf.arrayOfMovies
+                guard let mainTVC = strongSelf.storyboard?.instantiateViewController(identifier: "cellsVC") as? TableViewController else {return}
+                mainTVC.movies = strongSelf.movies
                 strongSelf.navigationController?.pushViewController(mainTVC, animated: true)
-                
             }
-            
         }
-        
     }
-    
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-       
     }
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        apiManager = APIManager()
-        startUIButton.titleLabel?.numberOfLines = 0
-        startUIButton.titleLabel?.textAlignment = .center
-        
+        startButton.titleLabel?.numberOfLines = 0
+        startButton.titleLabel?.textAlignment = .center
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        spinnerUIActivityIndicatorView.stopAnimating()
-        startUIButton.isHidden = false
-        
+        spinnerView.stopAnimating()
+        startButton.isHidden = false
     }
     
 }
